@@ -150,8 +150,8 @@ const subCategoryMasterList = {
         theme: 'theme-munka', 
         items: ['Közműves levelek kezelése', 'Központi hívások kezelése', 'Mérőállások elküldése Pásztornak', 'Bérlőtől vettem át a butyka bérleti díjat', 'Pásztorképző angolul megvágása', 'Központi emailek kezelése', 'Közműves emailek kezelése', 'Zoom szobák beidőzítése', 'Applikációs segítségkérések kezelése', 'Nyomdába mentem átvenni a Ror-t', 'Ror postázása', 'Takarítás szervezése', 'Nemzetközi ima szervezése']
     },
-    szolgalat: { 
-        theme: 'theme-szolgalat', 
+    szolgálat: { 
+        theme: 'theme-szolgálat', 
         items: ['Ima reggelt moderáltam', 'Imakommandót moderáltam', 'Eszter csoport ima alkalmat moderáltam', 'Fordítás', 'Op meetingen vettem részt', 'Op meetinget tartottam', 'Pásztorlás', 'Oda-vissza utazás és egyetemi klub', 'Nyíregyházi szolgálat', 'Taktaszadai szolgálat', 'Tiszalúci szolgálat', 'Kántorjánosi szolgálat', 'Ror lektorálás', 'Ror felolvasás', 'Ror pdf szerkesztése', 'Ror cover szerkesztése']
     },
     szellemi: { 
@@ -162,8 +162,8 @@ const subCategoryMasterList = {
         theme: 'theme-tanulas', 
         items: ['Orosz tanulás', 'Zongora tanulás']
     },
-    sajat: { 
-        theme: 'theme-sajat', 
+    saját: { 
+        theme: 'theme-saját', 
         items: ['Készülődés', 'Otthon voltam', 'Szünet', 'Utazás a Habi családhoz', 'Szüleinkkel találkoztunk']
     },
     egyeb: { 
@@ -175,7 +175,7 @@ const subCategoryMasterList = {
 function populateSubCategories(selectedMainCat) {
     const radioGroup = subCategoryContainer.querySelector('.radio-group');
     
-    if (selectedMainCat === 'alvas') {
+    if (selectedMainCat === 'alvás') {
         subCategoryContainer.classList.add('hidden');
         return;
     } 
@@ -245,7 +245,7 @@ function openEditModal(entry) {
     populateSubCategories(entry.mainCategory);
 
     // Visszatöltjük az összes mentett alkategóriát (akár többet is)
-    if (entry.mainCategory !== 'alvas' && entry.subCategory) {
+    if (entry.mainCategory !== 'alvás' && entry.subCategory) {
         const savedSubCats = entry.subCategory.split(', ');
         savedSubCats.forEach(savedVal => {
             // Megkeressük és bepipáljuk a mentett elemeket
@@ -272,7 +272,7 @@ saveWorkBtn.addEventListener('click', () => {
     const mainCat = mainCategorySelect.value;
     let subCat = "";
     
-    if (mainCat !== 'alvas') {
+    if (mainCat !== 'alvás') {
         // Összegyűjtjük az ÖSSZES bepipált checkboxot!
         const checkedBoxes = Array.from(document.querySelectorAll('input[name="subcat"]:checked'));
         // Vesszővel és szóközzel fűzzük össze őket
@@ -346,7 +346,7 @@ prevWeekBtn.addEventListener('click', () => changeWeek(-1));
 nextWeekBtn.addEventListener('click', () => changeWeek(1));
 
 const categoryColors = {
-    munka: '#e74c3c', szolgalat: '#f39c12', szellemi: '#9b59b6', sajat: '#2ecc71', alvas: '#34495e'
+    munka: '#e74c3c', szolgálat: '#f39c12', szellemi: '#9b59b6', saját: '#2ecc71', alvás: '#34495e'
 };
 const dayNames = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat", "Vasárnap"];
 
@@ -503,7 +503,7 @@ function generateReportText() {
     
     const groupedByDate = {};
     let totalWeekMins = 0;
-    const stats = { munka: 0, szolgalat: 0, szellemi: 0, sajat: 0, alvas: 0 };
+    const stats = { munka: 0, szolgálat: 0, szellemi: 0, saját: 0, alvás: 0 };
 
     weeklyEntries.forEach(entry => {
         if (!groupedByDate[entry.date]) groupedByDate[entry.date] = [];
@@ -543,7 +543,7 @@ function generateReportText() {
                 }
 
                 // Csak akkor írja ki az "Egyéb"-et, ha nem alvásról van szó ÉS üres a mező
-                if (!detailsLine && entry.mainCategory !== 'alvas') {
+                if (!detailsLine && entry.mainCategory !== 'alvás') {
                     detailsLine = "Egyéb";
                 }
                 bodyTxt += `${entry.start}-${entry.end} (${timeStr}, ${catLower})\n`;

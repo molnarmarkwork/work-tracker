@@ -236,10 +236,10 @@ main {
 }
 
 .entry-card.munka { border-left-color: #e74c3c; }
-.entry-card.szolgalat { border-left-color: #f39c12; }
+.entry-card.szolgálat { border-left-color: #f39c12; }
 .entry-card.szellemi { border-left-color: #9b59b6; }
-.entry-card.sajat { border-left-color: #2ecc71; }
-.entry-card.alvas { border-left-color: #34495e; }
+.entry-card.saját { border-left-color: #2ecc71; }
+.entry-card.alvás { border-left-color: #34495e; }
 
 .entry-header {
     display: flex;
@@ -523,9 +523,9 @@ main {
 .theme-munka input:checked + .subcat-label { background-color: #e74c3c; border-color: #e74c3c; }
 
 /* Narancssárga (Szolgálat) */
-.theme-szolgalat .subcat-label { border-color: #e67e22; color: #e67e22; }
-.theme-szolgalat .subcat-label::before { border-color: #e67e22; }
-.theme-szolgalat input:checked + .subcat-label { background-color: #e67e22; border-color: #e67e22; }
+.theme-szolgálat .subcat-label { border-color: #e67e22; color: #e67e22; }
+.theme-szolgálat .subcat-label::before { border-color: #e67e22; }
+.theme-szolgálat input:checked + .subcat-label { background-color: #e67e22; border-color: #e67e22; }
 
 /* Lila (Szellemi) */
 .theme-szellemi .subcat-label { border-color: #9b59b6; color: #9b59b6; }
@@ -538,9 +538,9 @@ main {
 .theme-tanulas input:checked + .subcat-label { background-color: #27ae60; border-color: #27ae60; }
 
 /* Szürke (Saját) */
-.theme-sajat .subcat-label { border-color: #7f8c8d; color: #7f8c8d; }
-.theme-sajat .subcat-label::before { border-color: #7f8c8d; }
-.theme-sajat input:checked + .subcat-label { background-color: #7f8c8d; border-color: #7f8c8d; }
+.theme-saját .subcat-label { border-color: #7f8c8d; color: #7f8c8d; }
+.theme-saját .subcat-label::before { border-color: #7f8c8d; }
+.theme-saját input:checked + .subcat-label { background-color: #7f8c8d; border-color: #7f8c8d; }
 
 /* Világos / Fehér (Egyéb) */
 .theme-egyeb .subcat-label { border-color: #bdc3c7; color: #34495e; background-color: #fdfdfd; }
