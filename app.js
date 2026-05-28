@@ -545,7 +545,7 @@ function generateReportText() {
                 // Csak akkor írja ki az "Egyéb"-et, ha nem alvásról van szó ÉS üres a mező
                 if (!detailsLine && entry.mainCategory !== 'alvas') {
                     detailsLine = "Egyéb";
-
+                }
                 bodyTxt += `${entry.start}-${entry.end} (${timeStr}, ${catLower})\n`;
                 bodyTxt += `${detailsLine}\n`;
 
