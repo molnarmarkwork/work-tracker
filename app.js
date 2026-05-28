@@ -525,9 +525,12 @@ function generateReportText() {
                 const hrs = Math.floor(entry.durationMins / 60);
                 const m = entry.durationMins % 60;
                 
+                // Az új rész:
                 let timeStr = "";
-                if (m === 0) {
-                    timeStr = `${hrs} óra`;
+                if (hrs === 0) {
+                    timeStr = `${m} perc`; // Ha 0 óra, csak a perceket írja ki
+                } else if (m === 0) {
+                    timeStr = `${hrs} óra`; // Ha 0 perc, csak az órákat
                 } else {
                     timeStr = `${hrs}ó ${m} perc`;
                 }
@@ -538,7 +541,10 @@ function generateReportText() {
                 if (entry.notes) {
                     detailsLine += (detailsLine ? " - " : "") + entry.notes;
                 }
-                if (!detailsLine) detailsLine = "Egyéb";
+
+                // Csak akkor írja ki az "Egyéb"-et, ha nem alvásról van szó ÉS üres a mező
+                if (!detailsLine && entry.mainCategory !== 'alvas') {
+                    detailsLine = "Egyéb";
 
                 bodyTxt += `${entry.start}-${entry.end} (${timeStr}, ${catLower})\n`;
                 bodyTxt += `${detailsLine}\n`;
