@@ -1,0 +1,562 @@
+/* Alapbeállítások és reszetelés */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* Képernyők kezelése */
+.screen {
+    display: none;
+    min-height: 100vh;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* --- Bejelentkező képernyő dizájn --- */
+#login-screen.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.error-msg {
+    color: #e74c3c;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Fő alkalmazás dizájn --- */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header-content h1 {
+    font-size: 20px;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#user-role-display {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+#logout-btn {
+    width: auto;
+    padding: 8px 15px;
+    background-color: #e74c3c;
+    font-size: 14px;
+}
+
+#logout-btn:hover {
+    background-color: #c0392b;
+}
+
+main {
+    max-width: 1300px;
+    margin: 20px auto;
+    padding: 0 20px;
+    padding-top: 20px;
+}
+
+/* --- Admin gombok --- */
+.action-btn {
+    background-color: #27ae60;
+    margin-bottom: 20px;
+}
+.action-btn:hover { background-color: #2ecc71; }
+
+/* --- Felugró ablak (Modal) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    background: none;
+    color: #333;
+    font-size: 28px;
+    width: auto;
+    padding: 0 10px;
+}
+.close-btn:hover { background: none; color: #e74c3c; }
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.time-inputs {
+    display: flex;
+    gap: 15px;
+}
+.time-inputs .form-group { flex: 1; }
+
+.duration-display {
+    background: #ecf0f1;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.radio-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.save-btn { background-color: #27ae60; margin-top: 10px; }
+.save-btn:hover { background-color: #2ecc71; }
+
+/* --- Mentett bejegyzések listája --- */
+.entry-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-left: 5px solid #2c3e50;
+}
+
+.entry-card.munka { border-left-color: #e74c3c; }
+.entry-card.szolgalat { border-left-color: #f39c12; }
+.entry-card.szellemi { border-left-color: #9b59b6; }
+.entry-card.sajat { border-left-color: #2ecc71; }
+.entry-card.alvas { border-left-color: #34495e; }
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.entry-details {
+    font-size: 14px;
+    color: #555;
+}
+
+/* --- Heti Naptár nézet dizájn --- */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.nav-btn { width: auto; padding: 8px 15px; background-color: #ecf0f1; color: #2c3e50; }
+.nav-btn:hover { background-color: #bdc3c7; }
+
+.week-timeline-wrapper {
+    display: flex;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    height: 65vh; /* Képernyőmagasság 65%-a */
+    overflow-y: auto; /* Függőleges görgetés (órák) */
+    overflow-x: auto; /* Vízszintes görgetés (napok) */
+    position: relative;
+}
+
+.time-labels {
+    min-width: 50px;
+    border-right: 1px solid #ccc;
+    background: #f8f9fa;
+    position: sticky;
+    left: 0; /* Görgetésnél bal oldalt marad */
+    z-index: 20;
+    height: 1440px; /* 24 óra * 60px */
+}
+
+.time-label {
+    position: absolute;
+    right: 5px;
+    font-size: 11px;
+    color: #7f8c8d;
+    transform: translateY(-50%);
+}
+
+.days-container {
+    display: flex;
+    flex: 1;
+    min-width: 800px; /* Hogy a 7 nap kiférjen, telefonon görgetős lesz */
+    height: 1440px;
+}
+
+.day-column {
+    flex: 1;
+    border-right: 1px solid #eee;
+    position: relative;
+    background: repeating-linear-gradient(to bottom, transparent, transparent 59px, #f0f0f0 59px, #f0f0f0 60px);
+}
+
+.day-header {
+    position: sticky;
+    top: 0;
+    background: #ecf0f1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    z-index: 10;
+}
+
+.event-block {
+    position: absolute;
+    left: 2%;
+    width: 96%;
+    border-radius: 4px;
+    padding: 4px;
+    color: white;
+    font-size: 11px;
+    line-height: 1.2;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 5;
+}
+
+.event-block strong { display: block; font-size: 12px; margin-bottom: 2px; }
+
+/* --- Szerkesztés és Törlés dizájn --- */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.modal-actions button {
+    margin-top: 0; 
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+}
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Kattintható események (csak adminnak) */
+.event-block.clickable {
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+.event-block.clickable:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* --- Admin gombok (Egymás alatt tartva) --- */
+#admin-controls {
+    display: flex;
+    flex-direction: column; /* Egymás alatt maradnak */
+    gap: 15px;
+    margin-bottom: 20px;
+    max-width: 400px; /* Nem hagyjuk, hogy túl szélesek legyenek a monitoron */
+    margin-left: auto; /* Középre igazítás */
+    margin-right: auto; /* Középre igazítás */
+}
+
+#admin-controls .action-btn {
+    width: 100%;
+    margin: 0;
+}
+
+/* Színek beállítása */
+.btn-green { background-color: #27ae60; }
+.btn-green:hover { background-color: #2ecc71; }
+
+.btn-blue { background-color: #3498db; }
+.btn-blue:hover { background-color: #2980b9; }
+
+/* A legutóbbi @media (min-width: 800px) részt teljesen törölheted, mert a main 1300px-re állítása megoldotta! */
+
+/* --- Osztott gomb (Letöltés + Másolás) --- */
+.split-btn-container {
+    display: flex;
+    width: 100%;
+}
+
+.split-btn-container #download-txt-btn {
+    flex: 1; /* A letöltés gomb kitölti a maradék helyet */
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.3); /* Halvány elválasztó vonal */
+}
+
+.split-btn-container #copy-txt-btn {
+    width: 50px; /* Fix szélesség az ikonnak */
+    font-size: 18px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+/* --- Naptár elcsúszásának javítása (00:00 és a rács letolása) --- */
+
+/* 1. Üres "Óra" sarok a bal felső sarokba (az idővonal fölé) */
+.time-labels::before {
+    content: "Óra";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background: #ecf0f1;
+    border-bottom: 2px solid #ccc;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* 2. A Napok fejlécének fixálása pontosan 50 pixelre */
+.day-header {
+    height: 50px;
+    box-sizing: border-box;
+}
+
+/* 3. Az összes óra és naptári blokk letolása 50 pixellel a fejléc alá */
+.time-label, .event-block {
+    margin-top: 50px;
+}
+
+/* 4. A háttér rácsvonalainak letolása 50 pixellel */
+.day-column {
+    background-position: 0 50px;
+}
+
+/* 5. A 00:00 felirat visszahozása, pontosan a fejléc alá igazítva */
+.time-label:first-child {
+    display: block !important;
+    transform: translateY(0); /* Így pont a vonalról indul lefelé, nem lóg a fejlécbe */
+}
+
+/* 6. Mivel 50 pixellel mindent lejjebb toltunk, a naptár magasságát is meg kell növelni */
+.time-labels, .days-container {
+    height: 1490px;
+}
+
+/* --- ÚJ ALKATEGÓRIA GOMBOK (Többszörös választás checkboxszal) --- */
+.subcat-checkbox-wrapper {
+    display: inline-block;
+    margin-bottom: 6px;
+    margin-right: 4px;
+}
+
+.subcat-checkbox-wrapper input[type="checkbox"] {
+    display: none; /* Eltüntetjük a ronda gyári négyzetet */
+}
+
+.subcat-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 2px solid;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+/* A gomb belsejében lévő kis ikon (pipa) helye */
+.subcat-label::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid;
+    border-radius: 4px;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    background-position: center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+
+/* KÖZÖS KIPIPÁLT ÁLLAPOT */
+.subcat-checkbox-wrapper input[type="checkbox"]:checked + .subcat-label {
+    color: #ffffff !important;
+}
+.subcat-checkbox-wrapper input[type="checkbox"]:checked + .subcat-label::before {
+    /* Beillesztjük az SVG fehér pipát a négyzetbe */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    border-color: #ffffff !important;
+}
+
+/* --- EGYEDI SZÍN TÉMÁK (Kérés szerint) --- */
+
+/* Piros (Munka) */
+.theme-munka .subcat-label { border-color: #e74c3c; color: #e74c3c; }
+.theme-munka .subcat-label::before { border-color: #e74c3c; }
+.theme-munka input:checked + .subcat-label { background-color: #e74c3c; border-color: #e74c3c; }
+
+/* Narancssárga (Szolgálat) */
+.theme-szolgalat .subcat-label { border-color: #e67e22; color: #e67e22; }
+.theme-szolgalat .subcat-label::before { border-color: #e67e22; }
+.theme-szolgalat input:checked + .subcat-label { background-color: #e67e22; border-color: #e67e22; }
+
+/* Lila (Szellemi) */
+.theme-szellemi .subcat-label { border-color: #9b59b6; color: #9b59b6; }
+.theme-szellemi .subcat-label::before { border-color: #9b59b6; }
+.theme-szellemi input:checked + .subcat-label { background-color: #9b59b6; border-color: #9b59b6; }
+
+/* Zöld (Tanulás) */
+.theme-tanulas .subcat-label { border-color: #27ae60; color: #27ae60; }
+.theme-tanulas .subcat-label::before { border-color: #27ae60; }
+.theme-tanulas input:checked + .subcat-label { background-color: #27ae60; border-color: #27ae60; }
+
+/* Szürke (Saját) */
+.theme-sajat .subcat-label { border-color: #7f8c8d; color: #7f8c8d; }
+.theme-sajat .subcat-label::before { border-color: #7f8c8d; }
+.theme-sajat input:checked + .subcat-label { background-color: #7f8c8d; border-color: #7f8c8d; }
+
+/* Világos / Fehér (Egyéb) */
+.theme-egyeb .subcat-label { border-color: #bdc3c7; color: #34495e; background-color: #fdfdfd; }
+.theme-egyeb .subcat-label::before { border-color: #bdc3c7; }
+.theme-egyeb input:checked + .subcat-label { background-color: #95a5a6; border-color: #95a5a6; }
+
+/* --- Egymás melletti Másolás és Email gombok --- */
+.action-btn-row {
+    display: flex;
+    gap: 15px; /* Ugyanannyi hely a gombok között, mint a sorok között */
+    width: 100%;
+}
+
+.action-btn-row .action-btn {
+    flex: 1; /* Mindkét gomb pontosan az elérhető hely felét (50-50%) foglalja el */
+    margin: 0;
+    padding: 12px 5px; /* Kicsit kisebb belső margó, hogy kiférjen a szöveg telefonon is */
+    font-size: 14px;
+}   

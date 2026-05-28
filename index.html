@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Munkaidő Nyilvántartó</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <h2>Belépés</h2>
+            <input type="password" id="password-input" placeholder="Jelszó...">
+            <button id="login-btn">Tovább</button>
+            <p id="login-error" class="error-msg hidden">Helytelen jelszó!</p>
+        </div>
+    </div>
+
+    <div id="app-screen" class="screen hidden">
+        <header>
+            <div class="header-content">
+                <h1>Naptár</h1>
+                <div class="user-controls">
+                    <span id="user-role-display"></span>
+                    <button id="logout-btn">Kijelentkezés</button>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div id="admin-controls" class="hidden">
+                <button id="add-work-btn" class="action-btn btn-green">+ Új munka hozzáadása</button>
+                <button id="download-txt-btn" class="action-btn btn-blue">Heti Jelentés Letöltése (TXT)</button>
+                
+                <div class="action-btn-row">
+                    <button id="copy-txt-btn" class="action-btn btn-blue">📋 Másolás</button>
+                    <button id="email-report-btn" class="action-btn btn-blue">✉️ Email küldése</button>
+                </div>
+            </div>
+            <div id="calendar-container">
+                <div class="calendar-header">
+                    <button id="prev-week-btn" class="nav-btn">◀</button>
+                    <h3 id="current-view-week" style="font-size: 15px; text-align: center;">2026. 05. 18. - 05. 24.</h3>
+                    <button id="next-week-btn" class="nav-btn">▶</button>
+                </div>
+
+                <div class="week-timeline-wrapper">
+                    <div id="time-labels" class="time-labels"></div>
+                    
+                    <div class="days-container" id="days-container">
+                        </div>
+                </div>
+            </div>
+
+            <div id="work-modal" class="modal-overlay hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Új bejegyzés</h3>
+                        <button id="close-modal-btn" class="close-btn">&times;</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="work-date">Dátum:</label>
+                        <input type="date" id="work-date">
+                    </div>
+
+                    <div class="time-inputs">
+                        <div class="form-group">
+                            <label for="time-start">Mettől:</label>
+                            <input type="time" id="time-start" value="08:00">
+                        </div>
+                        <div class="form-group">
+                            <label for="time-end">Meddig:</label>
+                            <input type="time" id="time-end" value="16:00">
+                        </div>
+                    </div>
+
+                    <div class="form-group duration-display">
+                        Eltelt idő: <span id="calculated-time">8 óra 0 perc</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="main-category">Fő kategória:</label>
+                        <select id="main-category">
+                            <option value="munka">Munka</option>
+                            <option value="szolgalat">Szolgálat</option>
+                            <option value="szellemi">Szellemi</option>
+                            <option value="sajat">Saját</option>
+                            <option value="alvas">Alvás</option>
+                        </select>
+                    </div>
+
+                    <div id="sub-category-container" class="form-group">
+                        <label>Alkategória / Tevékenység:</label>
+                        <div class="radio-group">
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="work-notes">Megjegyzés:</label>
+                        <textarea id="work-notes" rows="3" placeholder="Ide írhatsz szabadon..."></textarea>
+                    </div>
+
+                    <button id="save-work-btn" class="save-btn">Mentés</button>
+                    <button id="delete-work-btn" class="delete-btn hidden">Törlés</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script src="app.js"></script>
+</body>
+</html>
