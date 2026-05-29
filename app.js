@@ -346,7 +346,7 @@ prevWeekBtn.addEventListener('click', () => changeWeek(-1));
 nextWeekBtn.addEventListener('click', () => changeWeek(1));
 
 const categoryColors = {
-    munka: '#e74c3c', szolgalat: '#f39c12', szellemi: '#9b59b6', sajat: '#ffffff', alvas: '#5b5b5b', tanulas: '#14eb5f'
+    munka: '#e74c3c', szolgalat: '#f39c12', szellemi: '#9b59b6', sajat: '#333a36', alvas: '#222222', tanulas: '#14eb5f'
 };
 const dayNames = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat", "Vasárnap"];
 
