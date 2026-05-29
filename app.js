@@ -461,6 +461,17 @@ const copyTxtBtn = document.getElementById('copy-txt-btn');
 const emailReportBtn = document.getElementById('email-report-btn');
 
 function generateReportText() {
+
+    const categoryNames = {
+    munka: "Munka",
+    szolgalat: "Szolgálat",
+    szellemi: "Szellemi",
+    tanulas: "Tanulás",
+    sajat: "Saját",
+    alvas: "Alvás",
+    egyeb: "Egyéb"
+    };
+
     if (workEntries.length === 0) { 
         alert("Nincs még semmilyen mentett adat az adatbázisban!"); 
         return null; 
@@ -546,7 +557,9 @@ function generateReportText() {
                 if (!detailsLine && entry.mainCategory !== 'alvas') {
                     detailsLine = "Egyéb";
                 }
-                bodyTxt += `${entry.start}-${entry.end} (${timeStr}, ${catLower})\n`;
+                // A ${catLower} helyett a fordító táblát használjuk:
+                const niceCategory = categoryNames[entry.mainCategory] || entry.mainCategory;
+                bodyTxt += `${entry.start}-${entry.end} (${timeStr}, ${niceCategory.toLowerCase()})\n`;
                 bodyTxt += `${detailsLine}\n`;
 
                 if (i < dailyEntries.length - 1) {
@@ -570,7 +583,7 @@ function generateReportText() {
                 const hrs = Math.floor(mins / 60);
                 const m = mins % 60;
                 
-                const catName = cat.charAt(0).toUpperCase() + cat.slice(1);
+                const catName = categoryNames[cat] || cat;
                 
                 let timeStr = "";
                 if (m === 0) {
