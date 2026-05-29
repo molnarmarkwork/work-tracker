@@ -148,7 +148,7 @@ timeEndInput.addEventListener('input', updateDurationDisplay);
 const subCategoryMasterList = {
     munka: { 
         theme: 'theme-munka', 
-        items: ['Közműves levelek kezelése', 'Központi hívások kezelése', 'Mérőállások elküldése Pásztornak', 'Bérlőtől vettem át a butyka bérleti díjat', 'Pásztorképző angolul megvágása', 'Központi emailek kezelése', 'Közműves emailek kezelése', 'Zoom szobák beidőzítése', 'Applikációs segítségkérések kezelése', 'Nyomdába mentem átvenni a Ror-t', 'Ror postázása', 'Takarítás szervezése', 'Nemzetközi ima szervezése']
+        items: ['Közműves levelek kezelése', 'Központi hívások kezelése', 'Mérőállások elküldése Pásztornak', 'Bérlőtől vettem át a butyka bérleti díjat', 'Pásztorképző angolul megvágása', 'Központi emailek kezelése', 'Közműves emailek kezelése', 'Zoom szobák beidőzítése', 'Applikációs segítségkérések kezelése', 'Nyomdába mentem átvenni a Ror-t', 'Ror postázása', 'Takarítás szervezése', 'Nemzetközi ima szervezése', 'Pásztorné kérésére néztem utána tagoknak']
     },
     szolgalat: { 
         theme: 'theme-szolgalat', 
