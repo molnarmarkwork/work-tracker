@@ -351,6 +351,15 @@ const categoryColors = {
 const dayNames = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat", "Vasárnap"];
 
 function renderEntries() {
+    const categoryNames = {
+        munka: "MUNKA",
+        szolgalat: "SZOLGÁLAT",
+        szellemi: "SZELLEMI",
+        tanulas: "TANULÁS",
+        sajat: "SAJÁT",
+        alvas: "ALVÁS",
+        egyeb: "EGYÉB"
+    };
     daysContainer.innerHTML = ''; 
     const weekEnd = new Date(currentWeekStart);
     weekEnd.setDate(weekEnd.getDate() + 6);
@@ -430,7 +439,8 @@ function renderEntries() {
             if (duration < 30) block.style.fontSize = '9px';
 
             const subText = entry.subCategory ? ` - ${entry.subCategory}` : '';
-            block.innerHTML = `<strong>${entry.mainCategory.toUpperCase()}${subText}</strong>${entry.start} - ${entry.end}`;
+            const displayCategory = categoryNames[entry.mainCategory] || entry.mainCategory.toUpperCase();
+            block.innerHTML = `<strong>${displayCategory}${subText}</strong>${entry.start} - ${entry.end}`;
             
             // --- Vizuális finomhangolás (Szaggatott vonal az átlógás jelzésére) ---
             if (!isSpillOver && ((endH * 60 + endM) < topPosition)) {
