@@ -593,16 +593,23 @@ function generateReportText() {
                 const hrs = Math.floor(mins / 60);
                 const m = mins % 60;
                 
-                const catName = categoryNames[cat] || cat;
-                
+                // A kategória neve és az esetleges plusz szöveg
+                let catLabel = categoryNames[cat] || cat;
+                if (cat === 'alvas') {
+                    catLabel += " (Átlagos alvás idők 4-6-8 óránként: 28-42-56 óra)";
+                }
+
                 let timeStr = "";
-                if (m === 0) {
+                // Itt az egységesített "0 óra" elrejtés
+                if (hrs === 0) {
+                    timeStr = `${m} perc`;
+                } else if (m === 0) {
                     timeStr = `${hrs} óra`;
                 } else {
                     timeStr = `${hrs} óra ${String(m).padStart(2, '0')} perc`;
                 }
-                
-                statBlocks.push(`${catName} (${percent}%-a a hetemnek)\nSzum: ${timeStr}`);
+
+                statBlocks.push(`${catLabel} (${percent}%-a a hetemnek)\nSzum: ${timeStr}`);
             }
         }
         
