@@ -524,7 +524,7 @@ function generateReportText() {
     
     const groupedByDate = {};
     let totalWeekMins = 0;
-    const stats = { munka: 0, szolgalat: 0, szellemi: 0, sajat: 0, alvas: 0 };
+    const stats = { munka: 0, szolgalat: 0, szellemi: 0, tanulas: 0, sajat: 0, alvas: 0 };
 
     weeklyEntries.forEach(entry => {
         if (!groupedByDate[entry.date]) groupedByDate[entry.date] = [];
