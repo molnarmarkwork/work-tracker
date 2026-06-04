@@ -553,7 +553,7 @@ function generateReportText() {
                 } else if (m === 0) {
                     timeStr = `${hrs} óra`; // Ha 0 perc, csak az órákat
                 } else {
-                    timeStr = `${hrs}ó ${m} perc`;
+                    timeStr = `${hrs}óra ${m} perc`;
                 }
 
                 const catLower = entry.mainCategory.toLowerCase();
